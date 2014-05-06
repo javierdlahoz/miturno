@@ -158,7 +158,7 @@ function UsersSignUp($scope, $http, $location){
 		      if($scope.response.status)
 		      	{	
 		      	   showError("Su cuenta de usuario ha sido creada");
-		      	   setTimeout($location.path("users/dashboard"), 4000);
+		      	   setTimeout($location.path("users"), 4000);
 
 		      	}
 		  	}).error(function(data) {

@@ -29,10 +29,9 @@ class UsersController extends AppController {
     }
 
     public function save(){
-        //echo phpinfo();
     	$status = false;
         $data = $this->request->input('json_decode');
-    	$hspwd = $data->password;//Security::hash($data->password, null, true);
+    	$hspwd = Security::hash($data->password, null, true);
     	$this->User->set(
     		array('firstName' => $data->firstName,
     			  'lastName' => $data->lastName,
