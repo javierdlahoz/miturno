@@ -42,7 +42,7 @@ function getResponseTag(xml){
 }
 
 function getDir(){
-	return "http://miturno.co/app/backend/index.php/";
+	return "http://localhost/miturno.co/backend/index.php/";
 }
 
 function showError(error){

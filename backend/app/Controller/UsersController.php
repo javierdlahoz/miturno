@@ -29,10 +29,10 @@ class UsersController extends AppController {
     }
 
     public function save(){
-
+        //echo phpinfo();
     	$status = false;
         $data = $this->request->input('json_decode');
-    	$hspwd = Security::hash($data->password, null, true);
+    	$hspwd = $data->password;//Security::hash($data->password, null, true);
     	$this->User->set(
     		array('firstName' => $data->firstName,
     			  'lastName' => $data->lastName,
@@ -43,7 +43,7 @@ class UsersController extends AppController {
     	try{
     		$this->User->save();
     		$this->Session->write("User", $this->User);
-            $status =true;
+            $status = true;
     	}
     	catch(Exception $ex){
     		$status = $ex; 

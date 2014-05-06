@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is loaded automatically by the app/webroot/index.php file after core.php
  *
@@ -86,7 +87,9 @@ Cache::config('default', array('engine' => 'File'));
  *
  * ));
  */
+
 CakePlugin::loadAll();
+CakePlugin::load('Mongodb');
 
 Configure::write('Dispatcher.filters', array(
 	'AssetDispatcher',
