@@ -1,12 +1,19 @@
 function UsersLoginController($scope, $http, $location, $route, $rootScope){
+	if($rootScope.successMessage!=null){
+		$scope.successMessage = $rootScope.successMessage;
+		$scope.successStatus = true;
+	}
+	else
+		$scope.successStatus= false;
+
 	$scope.validate_user = function(){
 		$http.post(getDir()+"Users/login.json", {
 				email: $scope.username,
 				password: $scope.password,
 			}).success(function(data) {
 			      $scope.response = data.response;
-			      console.log($scope.response.status);
-			      if($scope.response.status==true){
+			      	console.log($scope.response.status);
+			      if($scope.response.status==true){			      		
 			      		$location.path("users/dashboard");
 			      }
 			      else
@@ -143,27 +150,58 @@ function UsersForget($scope, $http){
 	}
 }
 
-function UsersSignUp($scope, $http, $location){
+function UsersSignUp($scope, $http, $location, $rootScope){
+	$scope.errors = false;	
+
+	$scope.validateEmail = function() {
+			$http.post(getDir()+"Users/validateEmail.json", {
+					email: $scope.email
+			}).success(function(data) {
+			    $scope.response = data.response;
+			    if($scope.response!=null){
+				    if(!$scope.response.status)
+				      {	
+				        $scope.errors = true;
+								$scope.errorMessage = "Este email: '"+$scope.email+"' ya ha sido tomado. Prueba con otro";
+							}
+						else
+								$scope.errors = false;
+					}
+			}).error(function(data) {
+					console.log("error en el servicio web");
+			});
+	}
 
 	$scope.createCustomer = function(){
-		$http.post(getDir()+"Users/save.json", {
-				
-				firstName: $scope.firstName,
-				lastName: $scope.lastName,
-				email: $scope.email,
-				password: $scope.password
+		if($scope.password != $scope.password2)
+		{
+			$scope.errors = true;
+			$scope.errorMessage = "Las contraseñas no coinciden";	
+		}
+		if($scope.password.length<4)
+		{
+			$scope.errors = true;
+			$scope.errorMessage = "Las contraseñas debe tener al menos 5 caracteres";	
+		}
 
-		}).success(function(data) {
-		      $scope.response = data.response;
-		      if($scope.response.status)
-		      	{	
-		      	   showError("Su cuenta de usuario ha sido creada");
-		      	   setTimeout($location.path("users"), 4000);
+		if($scope.errors==false){
+			$http.post(getDir()+"Users/save.json", {
+					firstName: $scope.firstName,
+					lastName: $scope.lastName,
+					email: $scope.email,
+					password: $scope.password
 
-		      	}
-		  	}).error(function(data) {
-		  		console.log("error en el servicio web");
-		  	});
+			}).success(function(data) {
+			      $scope.response = data.response;
+			      if($scope.response.status)
+			      	{	
+			      	   $rootScope.successMessage = "Su cuenta ha sido creada satisfactoriamente, por favor inicie sesión";
+			      	   $location.path("users");
+			      	}
+			  	}).error(function(data) {
+			  		console.log("error en el servicio web");
+			  	});
+		}
 	}
 }
 

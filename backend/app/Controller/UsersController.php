@@ -28,6 +28,20 @@ class UsersController extends AppController {
         }
     }
 
+    public function validateEmail(){
+        $data = $this->request->input('json_decode');
+        $email = $this->User->find('first', array('conditions' => array('email' => $data->email)));
+        if(count($email)>0)
+            $status = false;
+        else
+            $status = true;
+
+        $this->set(array(
+            'response' => array("status" => $status),
+            '_serialize' => array('response')
+        ));
+    }
+
     public function save(){
     	$status = false;
         $data = $this->request->input('json_decode');

@@ -1,5 +1,6 @@
 function IndexController($scope,$rootScope, $http, MenuStatus){
 	$scope.loggedIn = false;
+	
 	$http.get(getDir()+"Users/isLoggedIn.json").success(function(data) {
 			      $scope.loggedIn = data.response.status;
 			 }).error(function(data) {
