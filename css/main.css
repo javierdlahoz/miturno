@@ -5,6 +5,14 @@
 	margin-left: auto;
 }
 
+.sticky{
+	opacity: 0.92;
+}
+
+.righty{
+	text-align: right;
+}
+
 body{
 	font-family:"Lucida Grande";
 }

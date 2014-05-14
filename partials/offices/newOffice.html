@@ -1,0 +1,26 @@
+	<form role="form" ng-submit="submit()">
+	<legend>Añadir una oficina</legend>
+	<div class="form-group">
+		<label for="">Nombre:</label>
+		<input type="text" class="form-control" id="" ng-model="name" required>
+	</div>
+	<div class="form-group">
+		<label for="">Dirección:</label>
+		<input type="text" class="form-control" id="" ng-model="address" required>
+	</div>
+	<div class="form-group">
+		<label for="">Teléfono:</label>
+		<input type="tel" class="form-control" id="" ng-model="phone" required>
+	</div>
+	<div class="form-group">
+		<label for="">Email:</label>
+		<input type="email" class="form-control" id="" ng-model="email" required>
+	</div>
+	<div class="form-group">
+		<label for="">Ciudad:</label>
+		<select name="" id="input" class="form-control" ng-model="city" required>
+			<option ng-repeat="city in cities" value="{{city.id}}">{{city.name}}</option>
+		</select>
+	</div>
+	<button type="submit" class="btn btn-primary">Añadir</button>
+</form>

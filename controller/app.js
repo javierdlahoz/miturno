@@ -14,6 +14,10 @@ var myApp = angular.module('myApp', [
         templateUrl: 'partials/offices/officesList.html',
         controller: 'OfficesController'
       })
+      .when('/offices/new', {
+        templateUrl: 'partials/offices/newOffice.html',
+        controller: 'NewOfficeController'
+      })
       .when('/offices/:id', {
         templateUrl: 'partials/offices/officeData.html',
         controller: 'OfficeDataController'

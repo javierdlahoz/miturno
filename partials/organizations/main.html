@@ -1,14 +1,19 @@
 <div class="main_div">
-  	<div class="menu_options">
-  		<span><a ng-href="#/organizations/myoffices">My offices</a></span>
-  		<span><a ng-href="#/organizations/mymodules">My modules</a></span>
-  		<span><a ng-href="#/organizations/myemployees">My employees</a></span>
-  		<span><a ng-href="#/organizations/myreports">My reports</a></span>
-  		<span><a ng-href="#/organizations/mysetup">My setup</a></span>
-  	</div>
-  	</p>
-  <div class="organizations_container">
-  	<h2>{{organization.name}}</h2>
-    <div ng-include="templateUrl"></div>
+  <div class="row">
+  	<div class="col-md-2">
+      <ul class="nav nav-pills nav-stacked">
+    		<li><a ng-href="#/organizations/myoffices">Oficinas</a></li>
+    		<li><a ng-href="#/organizations/mymodules">Módulos</a></li>
+    		<li><a ng-href="#/organizations/myemployees">Empleados</a></li>
+    		<li><a ng-href="#/organizations/myreports">Reportes</a></li>
+    		<li><a ng-href="#/organizations/mysetup">Configuración</a></li>
+   	</ul>
+    </div>
+  <div class="md-col-6">
+    <div class="organizations_container">
+    	<h2>{{organization.name}}</h2>
+      <div ng-include="templateUrl"></div>
+    </div>
   </div>
   </div>
+</div>
